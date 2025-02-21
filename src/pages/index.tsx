@@ -79,10 +79,10 @@ export default function Home() {
       <h1 className="text-5xl font-extrabold mb-8 text-gray-800">MEGARock majice - Sell off</h1>
       <div className="text-base text-black max-w-[1000px] mb-20 space-y-4">
       <p className="leading-relaxed">
-        Predstavljamo jednostavan webshop na kojem možete pronaći klupske majice koje još nisu našle svoje vlasnike. Obzirom da imamo nešto majica iz različitih "era" izrade majica, možete birati boje i veličine koje su nam preostale.
+        {'Predstavljamo jednostavan webshop na kojem možete pronaći klupske majice koje još nisu našle svoje vlasnike. Obzirom da imamo nešto majica iz različitih "era" izrade majica, možete birati boje i veličine koje su nam preostale.'}
       </p>
       <p className="leading-relaxed">
-        Webshop radi na principu "jedna majica - jedna narudžba". Ako želite naručiti više majica, morat ćete odraditi više narudžbi.
+        {'Webshop radi na principu "jedna majica - jedna narudžba". Ako želite naručiti više majica, morat ćete odraditi više narudžbi.'}
       </p>
       <p className="leading-relaxed">
         Odaberite željeni izgled majice, veličinu, te unesite kontakt podatke. Vaša narudžba će nam biti dostavljena na mail, na osnovu kojeg ćemo Vam poslati uplatnicu sustavom kojim Vam dolaze i uplatnice za članarine, pristupnine i ostalo.
