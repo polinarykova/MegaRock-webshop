@@ -76,45 +76,45 @@ export default function Home() {
     <div className="flex flex-col items-center p-8 bg-gray-100 min-h-screen">
       <h1 className="text-5xl font-extrabold mb-8 text-gray-800 py-20">MegaRock Shop</h1>
       {message && <p className="text-green-500 mb-4">{message}</p>}
-      <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16 px-40">
+      <div className="flex flex-wrap justify-center gap-16 px-10">
         {Object.keys(inventory).map((item) => (
-          <div
+            <div
             key={item}
-            className="bg-white rounded-lg shadow-xl p-6 hover:shadow-2xl transition duration-300 transform hover:-translate-y-1"
-          >
+            className="bg-white rounded-lg shadow-xl p-6 hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 w-[350px] flex flex-col items-center"
+            >
             <img
               src={`https://zpacks.com/cdn/shop/files/Zpacks-TrailCoolMerinoWoolT-Shirt-02_2048x.jpg?v=1686743695`}
               alt={item}
-              className="w-[250px] h-[400px] object-cover mb-4 rounded-lg mx-auto"
+              className="w-[250px] h-[400px] object-cover mb-4 rounded-lg mx-auto object-fit"
             />
             <div className="mb-4">
               <select
-                onChange={(e) => {
-                  setSelectedItem(item);
-                  setSelectedSize(e.target.value);
-                }}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+              onChange={(e) => {
+                setSelectedItem(item);
+                setSelectedSize(e.target.value);
+              }}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
               >
-                <option value="">Select size</option>
-                {Object.entries(inventory[item]).map(([size, count]) => (
-                  <option key={size} value={size} disabled={count === 0}>
-                    {size} ({count} left)
-                  </option>
-                ))}
+              <option value="">Select size</option>
+              {Object.entries(inventory[item]).map(([size, count]) => (
+                <option key={size} value={size} disabled={count === 0}>
+                {size} ({count} left)
+                </option>
+              ))}
               </select>
             </div>
             <button
               onClick={() => {
-                if (selectedItem === item && selectedSize) {
-                  openModal(item, selectedSize);
-                }
+              if (selectedItem === item && selectedSize) {
+                openModal(item, selectedSize);
+              }
               }}
               disabled={selectedItem !== item || !selectedSize}
               className="w-full px-6 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full hover:from-blue-600 hover:to-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
             >
               Order Now
             </button>
-          </div>
+            </div>
         ))}
       </div>
 
