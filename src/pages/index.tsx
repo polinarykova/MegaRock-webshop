@@ -68,21 +68,22 @@ export default function Home() {
       }
     } catch (error) {
       setMessage("Error sending order email.");
+      console.log(error)
     } 
   };
 
   return (
     <div className="flex flex-col items-center p-8 bg-gray-100 min-h-screen">
-      <h1 className="text-5xl font-extrabold mb-8 text-gray-800">MegaRock Shop</h1>
-      {message && <p className="text-red-500 mb-4">{message}</p>}
-      <div className="w-full max-w-6xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      <h1 className="text-5xl font-extrabold mb-8 text-gray-800 py-20">MegaRock Shop</h1>
+      {message && <p className="text-green-500 mb-4">{message}</p>}
+      <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16 px-40">
         {Object.keys(inventory).map((item) => (
           <div
             key={item}
             className="bg-white rounded-lg shadow-xl p-6 hover:shadow-2xl transition duration-300 transform hover:-translate-y-1"
           >
             <img
-              src={`https://source.unsplash.com/250x400/?${item},shirt`}
+              src={`https://zpacks.com/cdn/shop/files/Zpacks-TrailCoolMerinoWoolT-Shirt-02_2048x.jpg?v=1686743695`}
               alt={item}
               className="w-[250px] h-[400px] object-cover mb-4 rounded-lg mx-auto"
             />

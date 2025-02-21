@@ -7,7 +7,7 @@ const filePath = path.resolve(process.cwd(), "data", "inventory.json");
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "POST") {
     const { item, size } = req.body;
-    let inventory = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+    const inventory = JSON.parse(fs.readFileSync(filePath, "utf-8"));
 
     if (!inventory[item] || inventory[item][size] === undefined) {
       return res.status(400).json({ error: "Invalid item or size" });
