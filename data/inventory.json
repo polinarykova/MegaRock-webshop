@@ -1,16 +1,16 @@
 {
   "Item A": {
-    "small": 7,
+    "small": 1,
     "medium": 0,
-    "large": 2
+    "large": 1
   },
   "Item B": {
     "small": 0,
-    "medium": 2,
+    "medium": 1,
     "large": 3
   },
   "Item C": {
-    "small": 7,
+    "small": 6,
     "medium": 3,
     "large": 1
   },
