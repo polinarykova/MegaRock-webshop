@@ -55,7 +55,7 @@ export default function Home() {
       });
       const data = await response.json();
       if (response.ok) {
-        setMessage("Order placed successfully! Email sent.");
+        setMessage("Zaprimili smo Vašu narudžbu. Hvala!");
         setIsModalOpen(false);
         localStorage.setItem("formData", JSON.stringify(formData));
         setIsMessageModalOpen(true);
@@ -76,9 +76,20 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center p-8 bg-gray-100 min-h-screen">
-      <h1 className="text-5xl font-extrabold mb-8 text-gray-800 py-20">MegaRock Shop</h1>
+      <h1 className="text-5xl font-extrabold mb-8 text-gray-800">MEGARock majice - Sell off</h1>
+      <div className="text-base text-black max-w-[1000px] mb-20 space-y-4">
+      <p className="leading-relaxed">
+        Predstavljamo jednostavan webshop na kojem možete pronaći klupske majice koje još nisu našle svoje vlasnike. Obzirom da imamo nešto majica iz različitih "era" izrade majica, možete birati boje i veličine koje su nam preostale.
+      </p>
+      <p className="leading-relaxed">
+        Webshop radi na principu "jedna majica - jedna narudžba". Ako želite naručiti više majica, morat ćete odraditi više narudžbi.
+      </p>
+      <p className="leading-relaxed">
+        Odaberite željeni izgled majice, veličinu, te unesite kontakt podatke. Vaša narudžba će nam biti dostavljena na mail, na osnovu kojeg ćemo Vam poslati uplatnicu sustavom kojim Vam dolaze i uplatnice za članarine, pristupnine i ostalo.
+      </p>
+      </div>
       <div className="flex flex-wrap justify-center gap-16 px-10">
-        {Object.keys(inventory).map((item) => (
+      {Object.keys(inventory).map((item) => (
           <div
             key={item}
             className="bg-white rounded-xl shadow-xl p-6 hover:shadow-2xl transition duration-300 transform hover:scale-110 w-[350px] flex flex-col items-center"
@@ -96,10 +107,10 @@ export default function Home() {
                 }}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
               >
-                <option value="">Select size</option>
+                <option value="">Odaberite veličinu</option>
                 {Object.entries(inventory[item]).map(([size, count]) => (
                   <option key={size} value={size} disabled={count === 0}>
-                    {size} ({count} left)
+                    {size} ({count} u ponudi)
                   </option>
                 ))}
               </select>
@@ -113,13 +124,12 @@ export default function Home() {
               disabled={selectedItem !== item || !selectedSize}
               className="w-full px-6 py-2 rounded-lg mx-4 bg-gradient-to-r from-blue-300 to-blue-600 text-white rounded-full hover:from-blue-500 hover:to-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
             >
-              Order Now
+              Naruči
             </button>
           </div>
         ))}
       </div>
 
-      {/* Modal for order details */}
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div
@@ -127,10 +137,10 @@ export default function Home() {
             onClick={() => setIsModalOpen(false)}
           ></div>
           <div className="bg-white rounded-lg p-6 z-10 w-11/12 max-w-md text-black">
-            <h2 className="text-2xl font-bold mb-4">Enter your details</h2>
+            <h2 className="text-2xl font-bold mb-4">Upišite podatke:</h2>
             <form onSubmit={handleFormSubmit}>
               <div className="mb-4">
-                <label className="block">First Name</label>
+                <label className="block">Ime člana kluba</label>
                 <input
                   type="text"
                   value={formData.firstName}
@@ -142,7 +152,7 @@ export default function Home() {
                 />
               </div>
               <div className="mb-4">
-                <label className="block">Last Name</label>
+                <label className="block">Prezime člana kluba</label>
                 <input
                   type="text"
                   value={formData.lastName}
@@ -154,7 +164,7 @@ export default function Home() {
                 />
               </div>
               <div className="mb-4">
-                <label className="block">Email</label>
+                <label className="block">Email adresa</label>
                 <input
                   type="email"
                   value={formData.email}
@@ -166,7 +176,7 @@ export default function Home() {
                 />
               </div>
               <div className="mb-4">
-                <label className="block">Phone Number</label>
+                <label className="block">Broj mobitela</label>
                 <input
                   type="tel"
                   value={formData.phone}
@@ -182,7 +192,7 @@ export default function Home() {
                   type="submit"
                   className="px-4 py-2 bg-blue-400 text-white rounded hover:bg-blue-600"
                 >
-                  Submit Order
+                  Potvrdi narudžbu
                 </button>
               </div>
             </form>
@@ -190,7 +200,6 @@ export default function Home() {
         </div>
       )}
 
-      {/* Modal for success message */}
       {isMessageModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div
@@ -198,7 +207,7 @@ export default function Home() {
             onClick={() => setIsMessageModalOpen(false)}
           ></div>
           <div className="bg-white rounded-lg p-6 z-10 w-11/12 max-w-md text-black">
-            <h2 className="text-2xl font-bold mb-4">Success</h2>
+            <h2 className="text-2xl font-bold mb-4">Uspjeh</h2>
             <p>{message}</p>
             <div className="flex justify-end mt-4">
               <button
@@ -208,7 +217,7 @@ export default function Home() {
                 }}
                 className="px-4 py-2 bg-blue-400 text-white rounded hover:bg-blue-600"
               >
-                Close
+                Zatvori
               </button>
             </div>
           </div>

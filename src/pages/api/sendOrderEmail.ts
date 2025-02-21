@@ -21,15 +21,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     from: 'polina.rykova.hr@gmail.com',
     to: 'polina.rykova.hr@gmail.com',
     subject: 'New Order',
-    html: '<html><body><h1>Order Details</h1><p>Item: T-shirt<br>Size: M</p></body></html>',
+    html: `<html><body><h1>Order Details</h1><p>Item: ${req.body.item} <br>Size: ${req.body.size} <br>Ime: ${req.body.firstName} <br>Prezime: ${req.body.lastName} <br>Mail: ${req.body.email} <br>Broj mobitela: ${req.body.phone} </p></body></html>`,
   };
 
   try {
     const info = await transporter.sendMail(mailOptions);
-    console.log("Email sent successfully", info);
-    res.status(200).json({ message: 'Email sent successfully' });
+    res.status(200).json({ message: 'Mail poslan uspješno' });
   } catch (error) {
     console.error("Error sending email", error);
-    res.status(500).json({ error: 'Error sending email' });
+    res.status(500).json({ error: 'Pogreška pri slanju maila' });
   }
 }
