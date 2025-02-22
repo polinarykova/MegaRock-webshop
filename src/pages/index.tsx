@@ -30,7 +30,6 @@ export default function Home() {
     if (savedFormData) {
       setFormData(JSON.parse(savedFormData));
     }
-    window.location.reload();
   }, [inventory]);
 
 
@@ -72,6 +71,7 @@ export default function Home() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(inventory),
         });
+        window.location.reload();
       } else {
         setMessage(data.error || "Failed to send order email.");
       }
