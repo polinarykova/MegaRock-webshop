@@ -30,6 +30,7 @@ export default function Home() {
     if (savedFormData) {
       setFormData(JSON.parse(savedFormData));
     }
+    window.location.reload();
   }, [inventory]);
 
 
