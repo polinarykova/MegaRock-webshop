@@ -31,7 +31,7 @@ export default function Home() {
       setFormData(JSON.parse(savedFormData));
     }
   }, [inventory]);
-
+  
 
 
   // Open modal and store selected item and size
@@ -140,7 +140,7 @@ export default function Home() {
               onClick={() => {
                 if (selectedItem === item && selectedSize) {
                   if (inventory[item][selectedSize] === 0) { 
-                    window.location.reload(); 
+                    setSelectedSize(null); 
                     return;
                   }
                   openModal(item, selectedSize);
