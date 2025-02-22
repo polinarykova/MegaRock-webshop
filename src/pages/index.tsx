@@ -141,6 +141,10 @@ export default function Home() {
             <button
               onClick={() => {
                 if (selectedItem === item && selectedSize) {
+                  if (inventory[item][selectedSize] === 0) { 
+                    window.location.reload(); 
+                    return;
+                  }
                   openModal(item, selectedSize);
                 }
               }}
