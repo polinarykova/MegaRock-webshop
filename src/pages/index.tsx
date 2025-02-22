@@ -67,11 +67,16 @@ export default function Home() {
 
         if (selectedItem && selectedSize) inventory[selectedItem][selectedSize] -= 1;
 
-        await fetch("/api/updateInventory", {
+        const updateResponse = await fetch("/api/updateInventory", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(inventory),
         });
+
+        if (updateResponse.ok) {
+          fetchInventory();
+        } 
+
       } else {
         setMessage("Greška pri slanju narudžbe. Pokušajte ponovno.");
       }
