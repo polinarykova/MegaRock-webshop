@@ -94,14 +94,12 @@ export default function Home() {
     <p className="leading-relaxed">
       {'Predstavljamo jednostavan '}
       <span className="font-semibold text-blue-400">{'webshop'}</span>
-      {' gdje možete pronaći klupske majice koje još nisu našle svoje vlasnike. Obzirom da imamo majice iz različitih '}
-      <span className="font-semibold text-blue-400">{'"era"'}</span>
-      {', dostupne su boje i veličine koje su nam preostale.'}
+      {' gdje možete pronaći klupske majice koje još nisu našle svoje vlasnike. Dostupne boje i veličine su ograničene.'}
     </p>
     <p className="leading-relaxed">
       {'Webshop radi na principu '}
       <span className="font-semibold text-blue-400">{'"jedna majica - jedna narudžba"'}</span>
-      {'. Ako želite naručiti više majica, potrebno je napraviti više narudžbi.'}
+      {'. Ako želite naručiti više majica, potrebno je napraviti više narudžbi. Cijena jedne majice je 5€'}
     </p>
     <p className="leading-relaxed">
       {'Odaberite željeni izgled majice, veličinu i unesite kontakt podatke. Nakon što zaprimimo vašu narudžbu, poslat ćemo vam '}
