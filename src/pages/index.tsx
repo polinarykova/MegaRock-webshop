@@ -82,18 +82,34 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center p-8 bg-gray-100 min-h-screen">
-      <h1 className="text-5xl font-extrabold mb-8 text-gray-800">MEGARock majice - Sell off</h1>
-      <div className="text-base text-black max-w-[1000px] mb-20 space-y-4">
-      <p className="leading-relaxed">
-        {'Predstavljamo jednostavan webshop na kojem možete pronaći klupske majice koje još nisu našle svoje vlasnike. Obzirom da imamo nešto majica iz različitih "era" izrade majica, možete birati boje i veličine koje su nam preostale.'}
-      </p>
-      <p className="leading-relaxed">
-        {'Webshop radi na principu "jedna majica - jedna narudžba". Ako želite naručiti više majica, morat ćete odraditi više narudžbi.'}
-      </p>
-      <p className="leading-relaxed">
-        Odaberite željeni izgled majice, veličinu, te unesite kontakt podatke. Vaša narudžba će nam biti dostavljena na mail, na osnovu kojeg ćemo Vam poslati uplatnicu sustavom kojim Vam dolaze i uplatnice za članarine, pristupnine i ostalo.
-      </p>
-      </div>
+       <div className="flex flex-col items-center px-6 md:px-12">
+       <hr className="border-gray-500 w-full my-4" />
+  <h1 className="text-5xl font-extrabold text-blue-500 text-center mb-6">
+    {'MEGARock majice - Sell off'}
+  </h1>
+  <hr className="border-gray-500 w-full mb-4" />
+
+  <div className="text-lg text-white max-w-5xl space-y-6 mb-20 bg-gray-500 rounded-lg p-8 shadow-lg mt-12">
+    <p className="leading-relaxed">
+      {'Predstavljamo jednostavan '}
+      <span className="font-semibold text-blue-400">{'webshop'}</span>
+      {' gdje možete pronaći klupske majice koje još nisu našle svoje vlasnike. Obzirom da imamo majice iz različitih '}
+      <span className="font-semibold text-blue-400">{'"era"'}</span>
+      {', dostupne su boje i veličine koje su nam preostale.'}
+    </p>
+    <p className="leading-relaxed">
+      {'Webshop radi na principu '}
+      <span className="font-semibold text-blue-400">{'"jedna majica - jedna narudžba"'}</span>
+      {'. Ako želite naručiti više majica, potrebno je napraviti više narudžbi.'}
+    </p>
+    <p className="leading-relaxed">
+      {'Odaberite željeni izgled majice, veličinu i unesite kontakt podatke. Nakon što zaprimimo vašu narudžbu, poslat ćemo vam '}
+      <span className="font-semibold text-blue-400">{'uplatnicu'}</span>
+      {' putem sustava kojeg koristimo i za članarine i ostale uplate.'}
+    </p>
+  </div>
+</div>
+
       <div className="flex flex-wrap justify-center gap-16 px-10">
       {inventory && Object.keys(inventory).map((item) => (
           <div
@@ -101,7 +117,7 @@ export default function Home() {
             className="bg-white rounded-xl shadow-xl p-6 hover:shadow-2xl transition duration-300 transform hover:scale-110 w-[350px] flex flex-col items-center"
           >
             <img
-              src={`https://zpacks.com/cdn/shop/files/Zpacks-TrailCoolMerinoWoolT-Shirt-02_2048x.jpg?v=1686743695`}
+              src="https://zpacks.com/cdn/shop/files/Zpacks-TrailCoolMerinoWoolT-Shirt-02_2048x.jpg?v=1686743695"
               alt={item}
               className="w-[250px] h-[400px] object-cover mb-4 rounded-lg mx-auto object-fit"
             />
@@ -128,7 +144,7 @@ export default function Home() {
                 }
               }}
               disabled={selectedItem !== item || !selectedSize}
-              className="w-full px-6 py-2 rounded-lg mx-4 bg-gradient-to-r from-blue-300 to-blue-600 text-white rounded-full hover:from-blue-500 hover:to-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+              className="w-full px-6 py-2 rounded-lg mx-4 bg-gradient-to-r from-blue-400 to-blue-400 text-white rounded-full hover:from-blue-500 hover:to-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
             >
               Naruči
             </button>
