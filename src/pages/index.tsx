@@ -99,7 +99,7 @@ export default function Home() {
     <p className="leading-relaxed">
       {'Webshop radi na principu '}
       <span className="font-semibold text-blue-400">{'"jedna majica - jedna narudžba"'}</span>
-      {'. Ako želite naručiti više majica, potrebno je napraviti više narudžbi. Cijena jedne majice je 5€'}
+      {'. Ako želite naručiti više majica, potrebno je napraviti više narudžbi. Cijena jedne majice je'} <span className="font-semibold text-blue-400">{'5€'}</span>{'.'}
     </p>
     <p className="leading-relaxed">
       {'Odaberite željeni izgled majice, veličinu i unesite kontakt podatke. Nakon što zaprimimo vašu narudžbu, poslat ćemo vam '}
