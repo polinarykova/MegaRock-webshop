@@ -22,16 +22,19 @@ export default function Home() {
   });
 
   useEffect(() => {
-    fetch("/api/getInventory")
-      .then((res) => res.json())
-      .then((data: Inventory) => setInventory(data));
+    fetchInventory();
 
     const savedFormData = localStorage.getItem("formData");
     if (savedFormData) {
       setFormData(JSON.parse(savedFormData));
     }
-  }, [inventory]);
+  }, []);
   
+  function fetchInventory() {
+    fetch("/api/getInventory")
+    .then((res) => res.json())
+    .then((data: Inventory) => setInventory(data));
+  }
 
 
   // Open modal and store selected item and size

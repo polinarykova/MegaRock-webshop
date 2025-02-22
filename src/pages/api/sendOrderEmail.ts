@@ -3,6 +3,9 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const apiKey = process.env.BREVO_API_KEY;
+  if (!apiKey) {
+    return res.status(500).json({ error: 'BREVO_API_KEY is not set' });
+  }
 
   const transporter = nodemailer.createTransport({
     host: 'smtp-relay.brevo.com',
@@ -17,7 +20,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const mailOptions = {
     from: 'MegaRock SellOff',
     to: 'polina.rykova.hr@gmail.com',
-    subject: 'Nova narudžba',
+    subject: 'Nova ',
     html: `<html>
               <body>
                 <h1>Detalji narudžbe</h1>
@@ -33,8 +36,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     const info = await transporter.sendMail(mailOptions);
-    res.status(200).json({ message: info.response });
+    console.log('Email sent: ', info.response);
+    res.status(200).json({ message: 'Mail poslan uspješno' });
   } catch (error) {
-    res.status(500).json({ error: error });
+    console.error("Error sending email", error);
+    res.status(500).json({ error: 'Pogreška pri slanju maila' });
   }
 }
