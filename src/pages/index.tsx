@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 
 type Inventory = {
-  [key: string]: { [size: string]: number };
+  [item: string]: {
+    [size: string]: number;
+  };
 };
 
 export default function Home() {
@@ -29,6 +31,7 @@ export default function Home() {
       setFormData(JSON.parse(savedFormData));
     }
   }, []);
+
 
   // Open modal and store selected item and size
   const openModal = (item: string, size: string) => {
@@ -59,11 +62,14 @@ export default function Home() {
         setIsModalOpen(false);
         localStorage.setItem("formData", JSON.stringify(formData));
         setIsMessageModalOpen(true);
+        
+
+        if (selectedItem && selectedSize) inventory[selectedItem][selectedSize] -= 1;
 
         await fetch("/api/updateInventory", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ item: selectedItem, size: selectedSize }),
+          body: JSON.stringify(inventory),
         });
       } else {
         setMessage(data.error || "Failed to send order email.");
@@ -89,7 +95,7 @@ export default function Home() {
       </p>
       </div>
       <div className="flex flex-wrap justify-center gap-16 px-10">
-      {Object.keys(inventory).map((item) => (
+      {inventory && Object.keys(inventory).map((item) => (
           <div
             key={item}
             className="bg-white rounded-xl shadow-xl p-6 hover:shadow-2xl transition duration-300 transform hover:scale-110 w-[350px] flex flex-col items-center"

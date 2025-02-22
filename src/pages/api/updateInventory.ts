@@ -1,24 +1,31 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import fs from "fs";
-import path from "path";
+import { NextApiRequest, NextApiResponse } from "next";
 
-const filePath = path.resolve(process.cwd(), "data", "inventory.json");
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const apiKey = process.env.API_KEY;
+  const binId = process.env.BIN_ID;
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === "POST") {
-    const { item, size } = req.body;
-    const inventory = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+  if (!apiKey || !binId) {
+    return res.status(500).json({ error: "API key or bin ID not set in environment variables." });
+  }
 
-    if (!inventory[item] || inventory[item][size] === undefined) {
-      return res.status(400).json({ error: "Invalid item or size" });
+  try {
+    const response = await fetch(`https://api.jsonbin.io/v3/b/${binId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Master-Key": apiKey,
+      },
+      body: JSON.stringify(req.body),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to update data in JSONBin. Status: ${response.status}`);
     }
 
-    if (inventory[item][size] > 0) {
-      inventory[item][size] -= 1;
-      fs.writeFileSync(filePath, JSON.stringify(inventory, null, 2));
-      return res.status(200).json({ inventory });
-    } else {
-      return res.status(400).json({ error: "Out of stock" });
-    }
+    const data = await response.json();
+    res.status(200).json(data);
+  } catch (error) {
+    console.error("Error updating data:", error);
+    res.status(500).json({ error: "Failed to update data in JSONBin.io." });
   }
 }

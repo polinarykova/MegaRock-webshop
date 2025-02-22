@@ -1,21 +1,30 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import fs from "fs";
-import path from "path";
+import { NextApiRequest, NextApiResponse } from "next";
 
-const filePath = path.resolve(process.cwd(), "data", "inventory.json");
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const apiKey = process.env.API_KEY;
+  const binId = process.env.BIN_ID;
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (!apiKey || !binId) {
+    return res.status(500).json({ error: "API key or bin ID not set in environment variables." });
+  }
+
   try {
-    const fileContent = fs.readFileSync(filePath, "utf-8");
+    const response = await fetch(`https://api.jsonbin.io/v3/b/${binId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Master-Key": apiKey
+      },
+    });
 
-    if (!fileContent) {
-      return res.status(500).json({ error: "File is empty or invalid." });
+    if (!response.ok) {
+      throw new Error(`Failed to fetch data from JSONbin. Status: ${response.status}`);
     }
 
-    const inventory = JSON.parse(fileContent);
-    res.status(200).json(inventory);
+    const data = await response.json();
+    res.status(200).json(data.record);
   } catch (error) {
-    console.error("Error reading or parsing file:", error);
-    res.status(500).json({ error: "Failed to read or parse the inventory file." });
+    console.error("Error fetching data:", error);
+    res.status(500).json({ error: "Failed to fetch data from JSONbin.io." });
   }
 }
