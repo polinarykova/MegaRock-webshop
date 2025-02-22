@@ -18,12 +18,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   });
 
   const mailOptions = {
-    from: 'MegaRock SellOff',
+    from: 'polina.rykova.hr@gmail.com',
     to: 'polina.rykova.hr@gmail.com',
-    subject: 'Nova ',
+    subject: 'Majice - Nova narudžba',
     html: `<html>
               <body>
-                <h1>Detalji narudžbe</h1>
+                <h1>Detalji narudžbe:</h1>
                 <p>Majica: ${req.body.item}</p> 
                 <p>Veličina: ${req.body.size}</p>
                 <p>Ime: ${req.body.firstName}</p>
