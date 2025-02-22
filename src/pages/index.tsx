@@ -31,10 +31,11 @@ export default function Home() {
     }
   }, []);
 
-  function fetchInventory() {
-    fetch("/api/getInventory")
+  async function fetchInventory() {
+    await fetch("/api/getInventory")
       .then((res) => res.json())
       .then((data: Inventory) => setInventory(data));
+    
   }
 
   function openModal(item: string, size: string) {
