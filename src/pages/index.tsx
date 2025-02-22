@@ -24,7 +24,6 @@ export default function Home() {
 
   useEffect(() => {
     fetchInventory();
-    console.log("fetchInventory");
 
     const savedFormData = localStorage.getItem("formData");
     if (savedFormData) {
@@ -59,7 +58,7 @@ export default function Home() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(orderData),
       });
-      const data = await response.json();
+      
       if (response.ok) {
         setMessage("Zaprimili smo Vašu narudžbu. Hvala!");
         setIsModalOpen(false);
