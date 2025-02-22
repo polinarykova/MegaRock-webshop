@@ -30,7 +30,7 @@ export default function Home() {
     if (savedFormData) {
       setFormData(JSON.parse(savedFormData));
     }
-  }, []);
+  }, [inventory]);
 
 
   // Open modal and store selected item and size
