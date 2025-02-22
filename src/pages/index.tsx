@@ -33,6 +33,7 @@ export default function Home() {
   }, [inventory]);
 
 
+
   // Open modal and store selected item and size
   const openModal = (item: string, size: string) => {
     setSelectedItem(item);
@@ -71,7 +72,6 @@ export default function Home() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(inventory),
         });
-        window.location.reload();
       } else {
         setMessage(data.error || "Failed to send order email.");
       }
@@ -238,7 +238,6 @@ export default function Home() {
               <button
                 onClick={() => {
                   setIsMessageModalOpen(false);
-                  window.location.reload();
                 }}
                 className="px-4 py-2 bg-blue-400 text-white rounded hover:bg-blue-600"
               >
