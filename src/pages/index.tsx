@@ -119,6 +119,7 @@ export default function Home() {
             </div>
             <button
               onClick={() => {
+                fetchInventory();
                 if (selectedItem === item && selectedSize && inventory[item][selectedSize] > 0) {
                   openModal(item, selectedSize);
                 } else {
