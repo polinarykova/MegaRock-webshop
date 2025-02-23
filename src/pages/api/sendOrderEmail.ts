@@ -19,7 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   const mailOptions = {
     from: 'polina.rykova.hr@gmail.com',
-    to: 'polina.rykova.hr@gmail.com',
+    to: 'denis.lilih@gmail.com',
     subject: 'Majice - Nova narudžba',
     html: `<html>
               <body>
