@@ -19,7 +19,8 @@
     "react-dom": "^18.2.0",
     "sib-api-v3-sdk": "^8.5.0",
     "tree-sitter": "0.22.1",
-    "umi-request": "^1.4.0"
+    "umi-request": "^1.4.0",
+    "ws": "^8.18.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
@@ -27,6 +28,7 @@
     "@types/nodemailer": "^6.4.17",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
+    "@types/ws": "^8.5.14",
     "eslint": "^9.20.1",
     "eslint-config-next": "15.1.7",
     "postcss": "^8.5.3",
