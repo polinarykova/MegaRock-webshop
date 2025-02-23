@@ -34,10 +34,26 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             </html>`,
   };
 
+  const mailOptionsNaručitelj = {
+    from: 'info@megarock.hr',
+    to: req.body.email,
+    subject: 'Megarock majice - narudžba',
+    html: `<html>
+              <body>
+                <h1>Detalji vaše narudžbe:</h1>
+                <p>Majica: ${req.body.item}</p> 
+                <p>Veličina: ${req.body.size}</p>
+              </body>
+            </html>`,
+  };
+
   try {
-    const info = await transporter.sendMail(mailOptions);
-    console.log('Email sent: ', info.response);
-    res.status(200).json({ message: 'Mail poslan uspješno' });
+    const info1 = await transporter.sendMail(mailOptions);
+
+    const info2 = await transporter.sendMail(mailOptionsNaručitelj);
+
+    res.status(200).json(info1.response + info2.response)
+    
   } catch (error) {
     console.error("Error sending email", error);
     res.status(500).json({ error: 'Pogreška pri slanju maila' });
