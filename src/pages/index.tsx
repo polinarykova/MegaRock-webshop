@@ -7,6 +7,8 @@ type Inventory = {
   };
 };
 
+const images = ["Zute.png", "Bijele-I_love_RNR.png", "Tirkizne-polo.png", "Svjetlo_plave.png", "Narancaste.png", "Crvene.png", "Bijele_s_plavim.png", "Plave.png", "Tirkizne.png"];
+
 export default function Home() {
   const [inventory, setInventory] = useState<Inventory>({});
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
@@ -92,7 +94,7 @@ export default function Home() {
         });
 
         if (updateResponse.ok) {
-          localStorage.setItem("inventory", JSON.stringify(inventory));
+          localStorage.setItem("inventory", JSON.stringify(inventory));       
         }
       } else {
         setMessage("Greška pri slanju narudžbe. Pokušajte ponovno.");
@@ -114,10 +116,11 @@ export default function Home() {
               className="bg-white rounded-xl shadow-xl p-6 hover:shadow-2xl transition-transform duration-300 hover:scale-110 w-[350px] flex flex-col items-center"
             >
               <img
-                src="https://zpacks.com/cdn/shop/files/Zpacks-TrailCoolMerinoWoolT-Shirt-02_2048x.jpg?v=1686743695"
+                src={images[Object.keys(inventory).indexOf(item)]}
                 alt={item}
-                className="w-[250px] h-[400px] object-cover mb-4 rounded-lg"
+                className="w-[300px] h-[400px] object-cover mb-4 rounded-lg"
               />
+              <h2 className="text-xl font-bold text-gray-600 mb-4 text-center">{item}</h2>
               <div className="mb-4 w-full">
                 <select
                   onChange={(e) => {

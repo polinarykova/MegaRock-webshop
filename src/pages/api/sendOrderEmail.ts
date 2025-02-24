@@ -37,12 +37,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const mailOptionsNaručitelj = {
     from: 'info@megarock.hr',
     to: req.body.email,
-    subject: 'Megarock majice - narudžba',
+    subject: 'MEGARock majice - narudžba',
     html: `<html>
               <body>
                 <h1>Detalji vaše narudžbe:</h1>
                 <p>Majica: ${req.body.item}</p> 
                 <p>Veličina: ${req.body.size}</p>
+                <p>Za sva dodatna pitnaja možete nas kontaktirati na 0915902226</p>
+                <p>MEGARock team</p>
               </body>
             </html>`,
   };
