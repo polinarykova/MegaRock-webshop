@@ -165,9 +165,9 @@ export default function Home() {
                 <div key={field} className="mb-4">
                   <label className="block">
                     {field === "firstName"
-                      ? "Ime"
+                      ? "Ime člana kluba"
                       : field === "lastName"
-                      ? "Prezime"
+                      ? "Prezime člana kluba"
                       : field === "email"
                       ? "Email adresa"
                       : "Broj mobitela"}
